@@ -1,1 +1,1 @@
-# GitLab GitHub Workshop 2023 
+Security & Compliance Workshop

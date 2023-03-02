@@ -5,30 +5,16 @@
     
     {% block content %}
     <body>
+        <link href="static/style.css" rel="stylesheet" type="text/css" media="all">
+
         <center>
-            <h1>Tankui Racing Leaderboard</h1>
+            <h1>Tankui Racing Leaderboard Entry Page</h1>
             
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
+            <img src="{{url_for('static', filename='racer.png')}}" />
 
-            <hr>
-
-            <h3><b>Top Racers</b></h3>
-
-            {% for note in notes %}
-            <div><p><b>{{ note }}</b></p></div>
-            {% endfor %}
-
-            <hr>
             
-            <h3>Add a new entry</h3>
+
+            <!-- Add a note -->
             <form class="form-inline" action="" method="post" novalidate>
                 {{ add_form.hidden_tag() }}
                 <p>
@@ -37,21 +23,30 @@
                     {{ add_form.add() }}
                 </p>
             </form>
-
-            <hr>
-
-            <hr>
-
-            <h3>Admin?</h3>
+            <!-- Delete a note -->
             <form class="form-inline" action="" method="post" novalidate>
-                {{ admin_form.hidden_tag() }}
+                {{ delete_form.hidden_tag() }}
                 <p>
-                    {{ admin_form.login() }}
+                    {{ delete_form.id_field.label }}
+                    {{ delete_form.id_field(size=2) }}
+                    {{ delete_form.delete() }}
                 </p>
-            </form>
-
-            <hr>
-
+            </form>    
+            <!-- Display messages about adding/deleting notes -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            
+            <!-- Display all notes in list -->
+            {% for note in notes %}
+                <div class="notes"><p>{{ note }}</p></div>
+            {% endfor %}
         </center>
     </body>
     {% endblock %}
