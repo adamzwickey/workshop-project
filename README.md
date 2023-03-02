@@ -1,2 +1,1 @@
-# workshop-project
-Project used in the GitLab Workshop
+# GitLab GitHub Workshop 2023 
