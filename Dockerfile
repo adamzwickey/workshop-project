@@ -1,9 +1,9 @@
-FROM maven:3-jdk-8-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
-RUN mvn package
+RUN ./mvnw package
 
 ENV PORT 5000
 EXPOSE $PORT
